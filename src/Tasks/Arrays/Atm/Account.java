@@ -1,4 +1,4 @@
-package Tasks.Atm;
+package Tasks.Arrays.Atm;
 
 public class Account {
 

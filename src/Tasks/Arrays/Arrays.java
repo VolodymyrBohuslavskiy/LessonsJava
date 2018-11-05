@@ -2,6 +2,7 @@ package Tasks.Arrays;
 
 
 import java.util.Random;
+import java.util.Scanner;
 
 public class Arrays {
 
@@ -210,6 +211,34 @@ if ((int)o%3==0){o="okten";}
                 System.out.println(arr4[j]+" ");
             }
         }*/
+
+/*        System.out.println("Enter:");
+        Scanner scan =new Scanner(System.in);
+        int x=scan.nextInt();
+        System.out.println(x+1);*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     }

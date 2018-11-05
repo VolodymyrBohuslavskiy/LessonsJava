@@ -1,4 +1,4 @@
-package Tasks.Atm;
+package Tasks.Arrays.Atm;
 
 import java.util.Scanner;
 
@@ -79,6 +79,6 @@ public class Main {
             }
 
         }
-else System.out.println("Check Login or password "+ac1.getLogin()+" "+ac1.getPassword());
+else System.out.println("Check Login or password ");
     }
 }
