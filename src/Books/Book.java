@@ -11,8 +11,8 @@ public class Book {
         this.yer = yer;
     }
 
-
-
+    public Book() {
+    }
 
     public String getName() {
         return name;

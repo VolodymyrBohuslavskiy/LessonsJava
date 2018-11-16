@@ -55,7 +55,7 @@ public class Main {
                         System.out.println("Yor balance is " + ac1.getSum() + " grn");
 
 
-                    break;
+                        break;
 
                     case "Put money":
                         System.out.println("Enter sum: ");
@@ -78,7 +78,6 @@ public class Main {
 
             }
 
-        }
-else System.out.println("Check Login or password ");
+        } else System.out.println("Check Login or password ");
     }
 }

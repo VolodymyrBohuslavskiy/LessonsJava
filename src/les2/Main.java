@@ -1,5 +1,7 @@
 package les2;
 
+import com.sun.org.apache.xpath.internal.operations.String;
+
 import java.util.Arrays;
 import java.util.Random;
 
@@ -160,6 +162,9 @@ int [][] arr5=new int[2][10];
 
         System.out.println(user9.equals(user9clone));
         System.out.println(user1.equals(user9clone));
+
+        int a=3;
+        System.out.println((double)a);
     }
 
 

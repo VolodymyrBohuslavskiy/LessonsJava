@@ -6,18 +6,21 @@ public class main {
     static int i = 0;
     private static boolean wontExit = false;
     private static Scanner sc;
+    private static Scanner text;
 
     public static void main(String[] args) {
-        Book one = new Book("Книга-1", "Автор-1", 1995);
-        Book two = new Book("Книга-2", "Автор-2", 1996);
-        Book tree = new Book("Книга-3", "Автор-3", 1997);
-        Book four = new Book("Книга-4", "Автор-4", 1998);
-        Book five = new Book("Книга-5", "Автор-5", 1999);
-        Book six = new Book("Книга-6", "Автор-6", 2000);
-        Book seven = new Book("Книга-7", "Автор-7", 2001);
-        Book eight = new Book("Книга-8", "Автор-8", 2002);
-        Book nine = new Book("Книга-9", "Автор-9", 2003);
+        Book one = new Book("Книга-1", "Автор-1", 2004);
+        Book two = new Book("Книга-2", "Автор-1", 2002);
+        Book tree = new Book("Книга-3", "Автор-1", 2009);
+        Book four = new Book("Книга-4", "Автор-2", 2009);
+        Book five = new Book("Книга-5", "Автор-2", 2004);
+        Book six = new Book("Книга-6", "Автор-2", 2009);
+        Book seven = new Book("Книга-7", "Автор-3", 2004);
+        Book eight = new Book("Книга-8", "Автор-3", 2002);
+        Book nine = new Book("Книга-9", "Автор-3", 2002);
+
         Book ten = new Book("Книга-10", "Автор-10", 2004);
+
 
         Book[] kids = new Book[]{one, two, tree};
         Book[] romane = new Book[]{four, five, six};
@@ -25,31 +28,31 @@ public class main {
 
         poezia = ader(poezia, ten);
 
-        Book[] obrani = new Book[]{one, seven, eight};
+        Book[][] Yer = new Book[][]{{two, eight, nine}, {one, five, seven}, {tree, four, six}};
+
+        Book[][] Author = new Book[][]{{one, two, tree}, {four, five, six}, {seven, eight, nine}};
+
+        Book[] obrani = new Book[]{one, seven,};
 
         Book[][] all = new Book[][]{kids, romane, poezia};
 
-
+        Sqar(3, 12);
 
         while (!wontExit) {
 
             menu();
-           /* Scanner sc;*/
             sc = new Scanner(System.in);
-
+            text = new Scanner(System.in);
             int a = sc.nextInt();
             switch (a) {
                 case 1:
-                    System.out.println("Зареєструвати книгу");
+                    Reged();
+                    ShowBy(all);
                     Exiter();
                     break;
                 case 2:
                     System.out.println("Доступні книги:");
-                    for (Book[] books : all) {
-                        for (Book book : books) {
-                            System.out.println(book.getName() + " автор:" + book.getAuthor() + " видано у " + book.getYer() + "р. ");
-                        }
-                    }
+                    ShowBy(all);
                     Exiter();
                     break;
                 case 3:
@@ -58,29 +61,28 @@ public class main {
                     break;
                 case 4:
                     System.out.println("Перегляд по авторах:");
+                    ShowBy(Author);
                     Exiter();
                     break;
                 case 5:
                     System.out.println("Перегляд по роках:");
+                    ShowBy(Yer);
                     Exiter();
                     break;
                 case 6:
                     System.out.println("Oбрані книги:");
-                    for (Book book : obrani) {
-                        System.out.println(book.getName() + " автор:" + book.getAuthor() + " видано у " + book.getYer() + "р. ");
-                    }
+                    ShowBy(obrani);
                     Exiter();
                     break;
 
                 case 7:
                     System.out.println("Бувай !");
                     wontExit = true;
-                    break;
                 default:
                     System.out.println("Оберіть розділ меню згідно порядкового номеру:");
             }
         }
-        Sqar(10, 6);
+
 
     }
 
@@ -133,6 +135,46 @@ public class main {
         return arrOld;
     }
 
+    private static boolean Exiter() {
+        System.out.println("1-Продовжити роботу 2-Вийти з програми");
+        if (sc.nextInt() == 2) {
+            System.out.println("Бувай !");
+            return wontExit = true;
+        }
+        return false;
+    }
+
+    private static Book Reged() {
+        System.out.println("Зареєструвати книгу");
+        System.out.println("Назва книги:");
+        String name = text.nextLine();
+        System.out.println("Автор:");
+        String author = text.nextLine();
+        System.out.println("Рік:");
+        int year = sc.nextInt();
+
+        System.out.println("Нова книга: " + name + " " + author + " " + year);
+        Book ell = new Book(name, author, year);
+        return ell;
+    }
+
+
+    private static void ShowBy(Book[][] a) {
+        for (Book[] books : a) {
+            for (Book book : books) {
+                System.out.println(book.getName() + " " + book.getAuthor() + " " + book.getYer());
+            }
+        }
+
+    }
+
+    private static void ShowBy(Book[] a) {
+        for (Book book : a) {
+            System.out.println(book.getName() + " " + book.getAuthor() + " " + book.getYer());
+        }
+
+    }
+
     private static void Sqar(int a, char s) {
         for (int i = 0; i < a; i++) {
             for (int j = 0; j < a; j++) {
@@ -166,14 +208,4 @@ public class main {
             System.out.print("\n");
         }
     }
-
-    private static boolean Exiter() {
-        System.out.println("1-Продовжити роботу 2-Вийти з програми");
-        if (sc.nextInt() == 2) {
-            System.out.println("Бувай !");
-            return wontExit = true;
-        }
-        return false;
-    }
-
 }
