@@ -13,10 +13,7 @@ package TellBook;
 //        - змінити телефон
 //        - вивести всю тел. книгу
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Scanner;
-import java.util.Set;
+import java.util.*;
 
 public class Main {
     private static Scanner num = new Scanner(System.in);
@@ -27,8 +24,21 @@ public class Main {
 
 
         HashSet<Tel> numbers = new HashSet<>();
+        numbers.add(new Tel("a", 1));
+        numbers.add(new Tel("b", 2));
 
         HashMap<Contact, Set<Tel>> telefoneBook = new HashMap<>();
+        telefoneBook.put(new Contact("aaa", "sss"), numbers);
+
+
+//        for (Set<Tel> tels : telefoneBook.values()) {
+//            Iterator<Tel> iterator = tels.iterator();
+//            while (iterator.hasNext()) if (iterator.next().getNumber()==1){iterator.next().setNumber(999999);}
+//        }
+
+
+
+        System.out.println(telefoneBook);
 
         while (!wonExit) {
             Menu();
@@ -67,16 +77,18 @@ public class Main {
 
                 case 4:
                     System.out.println("змінити телефон");
-                    System.out.println("Імя:");
-                    String name2 = text.nextLine();
-                    System.out.println("Фамілія:");
-                    String surname3 = text.nextLine();
+//                    System.out.println("Імя:");
+//                    String name2 = text.nextLine();
+//                    System.out.println("Фамілія:");
+//                    String surname3 = text.nextLine();
+                    System.out.println("Старий телефон з книги:");
+                    int b0 = num.nextInt();
+
                     System.out.println("Новий телефон:");
                     int b1 = num.nextInt();
-                    System.out.println("Тип номера");
-                    String type1 = text.nextLine();
-                    ChangeNumber(numbers, telefoneBook, name2, surname3, type1, b1);
-                    System.out.println("Номер користувача" + " " + name2 + " " + surname3 + " " + "змінено !");
+
+                    SwapNumber(telefoneBook,b0,b1);
+                    System.out.println("Номер користувача змінено !");
                     Exiter();
                     break;
 
@@ -140,14 +152,30 @@ public class Main {
         return a;
     }
 
-
-    private static HashMap<Contact, Set<Tel>> ChangeNumber(Set<Tel> e, HashMap<Contact, Set<Tel>> a, String n, String s, String type, int telNew) {
-        ADDUSEER(a, n, s, AddTels(e, type, telNew));
-        return a;
+    private static HashMap<Contact, Set<Tel>> SwapNumber(HashMap<Contact, Set<Tel>> telefoneBook,int telOld, int telNew){
+     for (Set<Tel> tels : telefoneBook.values()) {
+        Iterator<Tel> iterator = tels.iterator();
+        while (iterator.hasNext()) if (iterator.next().getNumber()==telOld){iterator.next().setNumber(telNew);}
+     }
+    return telefoneBook;
     }
 
-
-
+//    private static HashMap<Contact, Set<Tel>> SwapNumber(HashMap<Contact, Set<Tel>> telefoneBook, String name, String surname, int telOld, int telNew) {
+//
+//        Iterator<Tel> iterator = telefoneBook.get(new Contact(name, surname)).iterator();
+//        while (iterator.hasNext()) if (iterator.next().getNumber() == telOld) {
+//            iterator.next().setNumber(telNew);
+//        }
+//        return telefoneBook;
+//    }
+//    private static HashMap<Contact, Set<Tel>> SwapNumber(HashMap<Contact, Set<Tel>> telefoneBook, String name, String surname, String swapType, int telNew) {
+//
+//        Iterator<Tel> iterator = telefoneBook.get(new Contact(name, surname)).iterator();
+//        while (iterator.hasNext()) if (iterator.next().getType() == swapType) {
+//            iterator.next().setNumber(telNew);
+//        }
+//        return telefoneBook;
+//    }
 //Class
 //    private static HashMap<Contact, Set<Tel>> AddUser(HashMap<Contact, Set<Tel>> a, String name, String
 //            surname, Set<Tel> numbers) {

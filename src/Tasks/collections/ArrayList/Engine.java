@@ -1,4 +1,4 @@
-package Tasks.collections;
+package Tasks.collections.ArrayList;
 
 
 //        - Двигун (к)
