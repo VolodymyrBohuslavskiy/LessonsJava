@@ -11,9 +11,15 @@ package Tasks.collections.mapTA;
 //        якщо депутат не хабарник то щоб він відмовився,
 //        або ж якщо сума хабаря надто велика то щоб він вагався
 //        чи брати чи ні)
+
+
+
 //        Клас фракція
 //        поля:
 //        список депутатів
+
+
+
 //        методи:
 //        додати депутата (вводимо з клави)
 //        видалити депутата(теж з клави)
@@ -52,8 +58,12 @@ public class Main {
         Deputat deputat = new Deputat("Ol", "Jay", 22);
         Deputat deputat1 = new Deputat("Ol", "Jay", 22,41000);
 
-        System.out.println(Deputat.TakeDribe(deputat1,100));
 
 
+//        int[] ints = {1, 4, 5, 6, 7, 8, 9, 90, 0};
+        for (byte i = 126; i < 127; i++) {
+            System.out.println("!");
+
+        }
     }
 }
