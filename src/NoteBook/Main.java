@@ -134,6 +134,8 @@ public class Main implements CalculatePOST {
         return users;
     }
 
+
+
     private static boolean Exiter() {
         System.out.println("1.Продовжити 2.Вийти");
         int ex1 = scannerNUM.nextInt();
@@ -277,8 +279,8 @@ public class Main implements CalculatePOST {
         while (!wonExit) {
 
             System.out.println("Додайте нотатку прямо зараз\n1.Подія 2.Зустріч 3.Нотатка 4.Деньнародження 5.Вийти");
-            int x2 = scannerNUM.nextInt();
-            switch (x2) {
+            int x3 = scannerNUM.nextInt();
+            switch (x3){
                 case 1:
                     System.out.println("Подія\nНазва:");
                     String name = scannerTEXT.nextLine();
@@ -311,7 +313,6 @@ public class Main implements CalculatePOST {
                     Add_Note(login, password, name2, note2, date2);
                     System.out.println("Подія " + name2 + " створено");
                     break;
-
                 case 4:
                     System.out.println("День народження\nНазва:");
                     String name3 = scannerTEXT.nextLine();
