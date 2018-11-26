@@ -18,25 +18,27 @@ package Pidpreyenstva;
 //        При створені працівника поле кваліфікації повинно заповнюватись рендомним значенням!!+
 
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
 public class Main {
 
-private static Set<Pratsivnuk> pratsivnuks=new HashSet<>();
-private static Set<Departament> departaments=new HashSet<>();
+private static ArrayList<Pratsivnuk> pratsivnuks=new ArrayList<>();
+private static ArrayList<Departament> departaments=new ArrayList<>();
 private static Set<Pidpruyemstvo> pidpruyemstva=new HashSet<>();
 
 
     public static void main(String[] args) {
         ADDPidpruyemstvo("Revo");
         ADDepartament("Asia","Revo");
+
         AddPratsivnuk("Olololn","Asia","Revo");
         AddPratsivnuk("Ononon","Asia","Revo");
         AddPratsivnuk("Ohohon","Asia","Revo");
 
         if (pidpruyemstva.contains(new Pidpruyemstvo("Revo")) && departaments.contains(new Departament("Asia"))){
-            pratsivnuks.forEach(pratsivnuk -> System.out.println(pratsivnuk.getName()));
+            pratsivnuks.forEach(pratsivnuk -> System.out.println(pratsivnuk.getName()+" "+pratsivnuk.getEXP()));
         }
 
 
@@ -52,13 +54,13 @@ private static Set<Pidpruyemstvo> pidpruyemstva=new HashSet<>();
         pidpruyemstva.add(new Pidpruyemstvo(pidpruyemstvo));
         return pidpruyemstva;}
 
-    private static Set<Departament> ADDepartament(String departament, String pidpruyemstvo){
+    private static ArrayList<Departament> ADDepartament(String departament, String pidpruyemstvo){
 
         if (pidpruyemstva.contains(new Pidpruyemstvo(pidpruyemstvo))){departaments.add(new Departament(departament));}
         return departaments;
     }
 
-    private static Set<Pratsivnuk>  AddPratsivnuk(String name,String departament,String pidpruyemstvo){
+    private static ArrayList<Pratsivnuk>  AddPratsivnuk(String name,String departament,String pidpruyemstvo){
         if (pidpruyemstva.contains(new Pidpruyemstvo(pidpruyemstvo)) && departaments.contains(new Departament(departament))){
         pratsivnuks.add(new Pratsivnuk(name,new Pidpruyemstvo(pidpruyemstvo),new Departament(departament)));}
     return pratsivnuks;}
