@@ -27,7 +27,6 @@ public class MAIN {
 
 
 
-
      }
 
     private static int[] ololol(int[] arrOld,int r, int q, int w) {

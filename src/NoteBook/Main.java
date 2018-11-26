@@ -1,6 +1,5 @@
 package NoteBook;
 
-
 import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Scanner;
@@ -12,32 +11,25 @@ import java.util.Scanner;
 //        - дата+
 //        - місце+
 //        - контакт+
-
 //        - тип нотатки(подія, зустріч, нотатка, д.н)+
-
 //        Меню програми:
 //        - реєстрація або вхід юзера+
 //        - створити нотатку+
-
 //        - переглянути(якщо вже є нотатки, якщо в цього
 //        юзера немає нотаток цей пункт не виводити)+
-
 //        - переглянути по типах(аналогічно попередньому)+
-
 //        Юзер поля:
 //        - login+
 //        - password+
-
 //        Створити інтерфейс з одним методом, який підраховує кількість постів
 //        кожного типу і виводить це значення біля кожного типу, наприклад:
-//        1) подія (5)<-методом обраховується
-//        2) зустріч (3)<-методом обраховується
+//        1) подія (5)<-методом обраховується+
+//        2) зустріч (3)<-методом обраховується+
 //        3)...
-
 //        нотатка повинна створюватись класом builder+
 
 
-public class Main implements CalculatePOST {
+public class Main{
     private static boolean wonExit = false;
 
     private static Scanner scannerNUM = new Scanner(System.in);
@@ -48,6 +40,7 @@ public class Main implements CalculatePOST {
 
     private static ArrayList<Post> posts = new ArrayList<>();
     private static ArrayList<User> users = new ArrayList<>();
+
 
     public static void main(String[] args) {
 
@@ -63,6 +56,7 @@ public class Main implements CalculatePOST {
         Add_Event("sa", "qwd", "Ev", "", "q");
         Add_Note("wfsa", "wqd", "N", "", "q");
 
+
         while (!wonExit) {
             System.out.println("Оберіть дію: 1.Вхід 2.Реєстрація 3.Вихід");
             int one1 = scannerNUM.nextInt();
@@ -74,12 +68,12 @@ public class Main implements CalculatePOST {
                     System.out.println("Введіть пароль");
                     password = scannerTEXT.nextLine();
                     if (Authorization(login, password)) {
-                        while (IsUserEmpty()) {
-                            MenuForEnptyUser();
-                        }
-                        MenuForUser();
-                    } else System.out.println("Не вірний пароль чи логін повторіть спробу");
-                    break;
+                    while (IsUserEmpty()) {
+                        MenuForEnptyUser();
+                    }
+                    MenuForUser();
+                } else System.out.println("Не вірний пароль чи логін повторіть спробу");
+                break;
                 case 2:
                     System.out.println("Реєстрація\nВведіть логін");
                     String logReg = scannerTEXT.nextLine();
@@ -92,7 +86,10 @@ public class Main implements CalculatePOST {
                     Exiter();
             }
         }
+
+
     }
+
 
     private static boolean Authorization(String login, String password) {
         if (users.contains(new User(login, password))) return true;
@@ -134,8 +131,6 @@ public class Main implements CalculatePOST {
         return users;
     }
 
-
-
     private static boolean Exiter() {
         System.out.println("1.Продовжити 2.Вийти");
         int ex1 = scannerNUM.nextInt();
@@ -155,10 +150,13 @@ public class Main implements CalculatePOST {
     }
 
     private static void MenuForUser() {
-
         while (!wonExit) {
-            int a = +Calculate1(NoteType.BD) + Calculate1(NoteType.MEETING) + Calculate1(NoteType.EVENT) + Calculate1(NoteType.NOTE);
-            System.out.println("1.Створити нотаткy\n2.Переглянути нотатки (" + a + ")\n3.Вивести нотатки по типах");
+            int a = +Calculate1(NoteType.BD) +
+                    Calculate1(NoteType.MEETING) +
+                    Calculate1(NoteType.EVENT) +
+                    Calculate1(NoteType.NOTE);
+            System.out.println("1.Створити нотаткy\n2.Переглянути нотатки (" +
+                    a + ")\n3.Вивести нотатки по типах\n4.Вийти");
             int x1 = scannerNUM.nextInt();
             switch (x1) {
                 case 1:
@@ -176,7 +174,7 @@ public class Main implements CalculatePOST {
                             System.out.println("Подія " + name + " створено");
                             break;
                         case 2:
-                            System.out.println("Зустріч\nНазва:");
+                           System.out.println("Зустріч\nНазва:");
                             String name1 = scannerTEXT.nextLine();
                             System.out.println("Місце:");
                             String place1 = scannerTEXT.nextLine();
@@ -197,7 +195,6 @@ public class Main implements CalculatePOST {
                             Add_Note(login, password, name2, note2, date2);
                             System.out.println("Подія " + name2 + " створено");
                             break;
-
                         case 4:
                             System.out.println("День народження\nНазва:");
                             String name3 = scannerTEXT.nextLine();
@@ -213,25 +210,28 @@ public class Main implements CalculatePOST {
                     }
                     Exiter();
                     break;
-
                 case 2:
-
                     System.out.println("Усі нотатки");
                     for (Post post : posts) {
-                        if (Objects.equals(post.getUser().getLogin(), login) && Objects.equals(post.getUser().getPassword(), password))
+                        if (Objects.equals(post.getUser().getLogin(), login) &&
+                                Objects.equals(post.getUser().getPassword(), password))
                             System.out.println(post);
                     }
                     Exiter();
                     break;
-
                 case 3:
-                    System.out.println("1.Подія (" + Calculate1(NoteType.EVENT) + ")| 2.Зустріч (" + Calculate1(NoteType.MEETING) + ")| 3.Нотатка (" + Calculate1(NoteType.NOTE) +")| 4.Деньнародження ("+Calculate1(NoteType.BD)+")");
+                    System.out.println(
+                            "1.Подія (" + Calculate1(NoteType.EVENT) + ")\n" +
+                                    "2.Зустріч (" + Calculate1(NoteType.MEETING) + ")\n" +
+                                    "3.Нотатка (" + Calculate1(NoteType.NOTE) + ")\n" +
+                                    "4.Деньнародження (" + Calculate1(NoteType.BD) + ")");
                     int x3 = scannerNUM.nextInt();
-
                     switch (x3) {
                         case 1:
                             posts.forEach(post -> {
-                                if (post.noteType.equals(NoteType.EVENT) && Objects.equals(post.getUser().getLogin(), login) && Objects.equals(post.getUser().getPassword(), password))
+                                if (post.noteType.equals(NoteType.EVENT) &&
+                                        Objects.equals(post.getUser().getLogin(), login) &&
+                                        Objects.equals(post.getUser().getPassword(), password))
                                     System.out.println(post);
                             });
                             Exiter();
@@ -239,7 +239,9 @@ public class Main implements CalculatePOST {
 
                         case 2:
                             posts.forEach(post -> {
-                                if (post.noteType.equals(NoteType.MEETING) && Objects.equals(post.getUser().getLogin(), login) && Objects.equals(post.getUser().getPassword(), password))
+                                if (post.noteType.equals(NoteType.MEETING) &&
+                                        Objects.equals(post.getUser().getLogin(), login) &&
+                                        Objects.equals(post.getUser().getPassword(), password))
                                     System.out.println(post);
                             });
                             Exiter();
@@ -247,7 +249,9 @@ public class Main implements CalculatePOST {
 
                         case 3:
                             posts.forEach(post -> {
-                                if (post.noteType.equals(NoteType.NOTE) && Objects.equals(post.getUser().getLogin(), login) && Objects.equals(post.getUser().getPassword(), password))
+                                if (post.noteType.equals(NoteType.NOTE) &&
+                                        Objects.equals(post.getUser().getLogin(), login) &&
+                                        Objects.equals(post.getUser().getPassword(), password))
                                     System.out.println(post);
                             });
                             Exiter();
@@ -255,7 +259,9 @@ public class Main implements CalculatePOST {
 
                         case 4:
                             posts.forEach(post -> {
-                                if (post.noteType.equals(NoteType.BD) && Objects.equals(post.getUser().getLogin(), login) && Objects.equals(post.getUser().getPassword(), password))
+                                if (post.noteType.equals(NoteType.BD) &&
+                                        Objects.equals(post.getUser().getLogin(), login) &&
+                                        Objects.equals(post.getUser().getPassword(), password))
                                     System.out.println(post);
                             });
                             Exiter();
@@ -263,10 +269,13 @@ public class Main implements CalculatePOST {
 
                         case 5:
                             Exiter();
+                            break;
                         default:
                             System.out.println("Оберіть");
                     }
                     break;
+                case 4:Exiter();
+                break;
                 default:
                     System.out.println("Оберіть");
                     Exiter();
@@ -275,12 +284,10 @@ public class Main implements CalculatePOST {
     }
 
     private static void MenuForEnptyUser() {
-
         while (!wonExit) {
-
             System.out.println("Додайте нотатку прямо зараз\n1.Подія 2.Зустріч 3.Нотатка 4.Деньнародження 5.Вийти");
             int x3 = scannerNUM.nextInt();
-            switch (x3){
+            switch (x3) {
                 case 1:
                     System.out.println("Подія\nНазва:");
                     String name = scannerTEXT.nextLine();
@@ -341,6 +348,18 @@ public class Main implements CalculatePOST {
         return list.isEmpty();
     }
 
+    public int Calculate(NoteType type) {
+        ArrayList<Post> list = new ArrayList<>();
+        for (Post post : posts) {
+            if (post.getUser().getLogin().equals(login) &&
+                    post.getUser().getPassword().equals(password) &&
+                    post.getNoteType().equals(type)) {
+                list.add(post);
+            }
+        }
+        return list.size();
+    }
+
     private static int Calculate1(NoteType type) {
         ArrayList<Post> list = new ArrayList<>();
         for (Post post : posts) {
@@ -351,8 +370,5 @@ public class Main implements CalculatePOST {
         return list.size();
     }
 
-    @Override
-    public int Calculate(NoteType type) {
-        return 0;
-    }
+
 }

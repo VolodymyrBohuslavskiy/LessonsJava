@@ -1,24 +1,23 @@
 package Tasks.collections.mapTA;
 
-//Клас людина:
-//        поля:
-//        вага,зріст
-//        Клас депутат(наслідується від людини):
-//        поля:
-//        прізвище,ім'я,вік,хабарник?,розмі хабаря
+//Клас людина:+
+//        поля:+
+//        вага,зріст+
+//        Клас депутат(наслідується від людини):+
+//        поля:+
+//        прізвище,ім'я,вік,хабарник?,розмі хабаря+
 //        методи:
 //        дати хабаря(зробити відповідні перевірки...
 //        якщо депутат не хабарник то щоб він відмовився,
 //        або ж якщо сума хабаря надто велика то щоб він вагався
-//        чи брати чи ні)
-
+//        чи брати чи ні)+
 
 
 //        Клас фракція
 //        поля:
 //        список депутатів
 
-
+import java.util.*;
 
 //        методи:
 //        додати депутата (вводимо з клави)
@@ -28,6 +27,7 @@ package Tasks.collections.mapTA;
 //        вивести всіх депутатів
 //        видалити всіх депутатів
 //        вивести загальну суму хабарів для фракції
+
 //        клас Верховна рада
 //        поля:
 //        мапа фракцій
@@ -53,17 +53,17 @@ package Tasks.collections.mapTA;
 //        3-вивести найбільшого хабарника
 //        меню робимо на свій смак
 public class Main {
+    static private Map<Fraction, Deputat> Parlament = new HashMap<>();
+    static private Set<Fraction> fractionsractions = new HashSet<>();
 
     public static void main(String[] args) {
-        Deputat deputat = new Deputat("Ol", "Jay", 22);
-        Deputat deputat1 = new Deputat("Ol", "Jay", 22,41000);
 
 
-
-//        int[] ints = {1, 4, 5, 6, 7, 8, 9, 90, 0};
-        for (byte i = 126; i < 127; i++) {
-            System.out.println("!");
-
-        }
     }
+
+    private static Deputat AddDep() {
+        return null;
+    }
+
+
 }

@@ -35,19 +35,18 @@ public class Main {
 
         ArrayList<Post> posts = new ArrayList<>();
 
-        AddPostS(posts, "Кіт", "Куплю кота", "Укр", "Львів", "Назар", "102");
-        AddPostP(posts, "Пес", "Продам песика", "Укр", "Стрий", "Микола", "103");
-        AddPostS(posts, "Хом'як", "Куплю хом'яка", "Укр", "Моршин", "Іван", "104");
-        AddPostP(posts, "Шиншила", "Продам шиншилу", "Укр", "Дрогобич", "Тарас", "105");
+        AddPostS(posts, "123", "123", "123", "123", "123", "123");
+        AddPostP(posts, "1123", "123", "123", "123", "123", "123");
 
-
+        AddPostS(posts, "456", "456", "456", "456", "456", "456");
+        AddPostP(posts, "4456", "456", "456", "456", "456", "456");
 
         while (!wonExit) {
             Menu();
             int a = Main.num.nextInt();
             switch (a) {
                 case 1:
-                    System.out.println("1.Продам 2.Куплю");
+                    System.out.println("1.Шкаю роботу 2.Шукаю працівника");
                     int b = Main.num.nextInt();
                     System.out.println("Імя:");
                     String name = text.nextLine();
@@ -78,7 +77,7 @@ public class Main {
 
                 case 2:
                     System.out.println("\nВсі пости:");
-                    ShowAll(posts);
+                    posts.forEach(System.out::println);
                     break;
 
                 case 3:
@@ -86,10 +85,16 @@ public class Main {
                     int d = num.nextInt();
                     switch (d) {
                         case 1:
-                            ShowAllByType(posts, "Попит");
+                            posts.forEach(post -> {
+                                if (Objects.equals(post.getClass().getName(), "PostSite.Surch"))
+                                    System.out.println(post);
+                            });
                             break;
                         case 2:
-                            ShowAllByType(posts, "Пропозиція");
+                            posts.forEach(post -> {
+                                if (Objects.equals(post.getClass().getName(), "PostSite.Promote"))
+                                    System.out.println(post);
+                            });
                             break;
                         default:
                             System.out.println("Нічого не обрано");
@@ -100,12 +105,11 @@ public class Main {
 
                 case 4:
                     System.out.println("Видалити пост"/*+" "+"Введіть ім'я:"*/);
-//                    String name1 = text.nextLine();
+
                     System.out.println("Введіть загловок посту:");
-                    String title = text.nextLine();
-                    DelPostByTitle(posts, title);
-//                    DelPost(posts, name1, title);
-                    System.out.println("Пост " + title + " видалено!");
+                    String title2 = text.nextLine();
+                    posts.removeIf(post -> Objects.equals(post.getTitel(), title2));
+                    System.out.println("Пост " + title2 + " видалено!");
                     Exiter();
                     break;
 
@@ -113,17 +117,27 @@ public class Main {
                     System.out.println("знайти пост певного типу в певному місті\n Введіть місто:");
                     String city1 = text.nextLine();
 
-                    System.out.println("1.Попит 2.Пропозиція");
+                    System.out.println("1.Шкаю роботу 2.Шукаю працівника");
                     int d1 = num.nextInt();
                     switch (d1) {
                         case 1:
-                            ShowByCity_Type(posts, city1, "Surch");
+                            posts.forEach(post -> {
+                                if (Objects.equals(post.getLocation().getCity(), city1) &&
+                                        Objects.equals(post.getClass().getName(), "PostSite.Surch"))
+                                    System.out.println(post.getTitel() + " " + post.getClass().getName());
+                            });
                             Exiter();
                             break;
+
                         case 2:
-                            ShowByCity_Type(posts, city1, "Promote");
+                            posts.forEach(post -> {
+                                if (Objects.equals(post.getLocation().getCity(), city1) &&
+                                        Objects.equals(post.getClass().getName(), "PostSite.Promote"))
+                                    System.out.println(post.getTitel() + " " + post.getClass().getName());
+                            });
                             Exiter();
                             break;
+
                         default:
                             System.out.println("Нічого не обрано");
                             Exiter();
@@ -180,35 +194,6 @@ public class Main {
         return posts;
     }
 
-    private static void ShowAll(ArrayList<Post> posts) {
-        for (Post post : posts) {
-            System.out.println(post.getTitel() + " " + post.getText() + " " + post.getUser().getName() + " " + post.getUser().getTel() + " " + post.getLocation().getCity() + " " + post.getLocation().getCountry());
-        }
-    }
-
-    private static void ShowAllByType(ArrayList<Post> posts, String type) {
-        for (Post post : posts) {
-            if (Objects.equals(post.getType(), "Surch") && Objects.equals(type, "Попит")) {
-                System.out.println(post);
-            }
-            if (Objects.equals(post.getType(), "Promote") && Objects.equals(type, "Пропозиція")) {
-                System.out.println(post);
-            }
-        }
-    }
-
-    private static ArrayList<Post> DelPostByTitle(ArrayList<Post> posts, String titel) {
-        posts.removeIf(post -> Objects.equals(post.getTitel(), titel));
-        return posts;
-    }
-
-    private static void ShowByCity_Type(ArrayList<Post> posts, String city, String type) {
-        for (Post post : posts) {
-            if (Objects.equals(post.getLocation().getCity(), city) && Objects.equals(post.getType(), type)){
-                System.out.println(post);
-            }
-        }
-    }
 
 }
 
