@@ -1,15 +1,11 @@
 package Pidpreyenstva;
 
-
 import lombok.Data;
-
 @Data
 
-
-
 public class Pratsivnuk {
-    private String name;{}
-    private int EXP= (int)(Math.random() * 10);
+    private String name;
+    private int EXP=1+(int)(Math.random() * 10);
     private Pidpruyemstvo pidpruyemstvo;
     private Departament departament;
 
