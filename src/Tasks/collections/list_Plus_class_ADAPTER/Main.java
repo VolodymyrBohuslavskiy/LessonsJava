@@ -1,10 +1,10 @@
 package Tasks.collections.list_Plus_class_ADAPTER;
 
 //Існують наступні об'єкти.
-//        Створити класи під них.
+//        Створити класи під них.+
 //        Створити метод , який об'єднує об'єкти з однаковими id в єдиний об'єкт
-//        і повертає вам цей список об'єктів.
-//        Класс під загальний об'єкт рписати самостійно. Він повинен містити тільки необхідні поля
+//        і повертає вам цей список об'єктів.+
+//        Класс під загальний об'єкт рписати самостійно. Він повинен містити тільки необхідні поля+
 
 //        список 1
 //        new Person(1,"vaysa",32);
@@ -32,7 +32,7 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Iterator;
 
-//        список 3 - це результат робботи методу який
+//        список 3 - це результат робботи методу який+
 public class Main {
 private static ArrayList<Person> Per =new ArrayList<>();
 private static ArrayList<Auth> Acc =new ArrayList<>();
@@ -65,7 +65,7 @@ private static ArrayList<Acount> ALL =new ArrayList<>();
 
 Frend();
 
-ALL.forEach(System.out::println);
+ALL.forEach(acount -> System.out.println(acount.getName()+" "+acount.getAge()+" "+acount.getLogin()+" "+acount.getPasword()));
 
     }
 private static ArrayList<Acount> Frend(){
@@ -76,11 +76,17 @@ private static ArrayList<Acount> Frend(){
     Iterator<Auth> authIterator = Acc.iterator();
 
     while (personIterator.hasNext() && authIterator.hasNext()){
-ALL.add(Acount.builder()
-        .name(personIterator.next().getName())
-//        .age(personIterator.next().getAge())
-//        .login(authIterator.next().getLogin())
-        .pasword(authIterator.next().getPasssword())
+
+        //Для кожного класу треба створити змінні ітератора authIterator.next() та personIterator.next()
+        final Auth next = authIterator.next();
+        final Person next1 = personIterator.next();
+
+        //Після чого зєднуємо обєкти через білдер
+        ALL.add(Acount.builder()
+        .name(next1.getName())
+        .age(next1.getAge())
+        .login(next.getLogin())
+        .pasword(next.getPasssword())
         .build());
     }
     return ALL;}

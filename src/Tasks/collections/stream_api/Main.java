@@ -1,8 +1,8 @@
 package Tasks.collections.stream_api;
 
-
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.LinkedList;
 
 public class Main {
     public static void main(String[] args) {
@@ -22,7 +22,6 @@ public class Main {
         final ROM rom500 = new ROM("rom500", ROMtype.SSD, 500, CountryOfManufacture.INDIA);
         final ROM rom1000 = new ROM("rom1000", ROMtype.HDD, 1000, CountryOfManufacture.USA);
         final ROM rom2000 = new ROM("rom2000", ROMtype.SSD, 2000, CountryOfManufacture.KOREA);
-
 
         ArrayList<Computer> computers = new ArrayList<>();
 
@@ -47,54 +46,96 @@ public class Main {
         computers.add(new Computer("E29", 2015, 4, 1110, rom1000, i3));
         computers.add(new Computer("E30", 2009, 2, 1410, rom500, QardCore));
 
-//        1. Знайти всі комп'ютери які мають рік випуску більше ніж 2010
-        computers.stream().filter(computer -> computer.getYear()<2010).forEach(System.out::println);
+        System.out.println("\n1. Знайти всі комп'ютери які мають рік випуску більше ніж 2010");
+        computers.stream().filter(computer -> computer.getYear() < 2010).forEach(System.out::println);
 
-        System.out.println("__________________________________________________________________________");
+        System.out.println("\n2. Знайти всі комп'ютери які мають рік випуску більше ніж 2010 та країну виробник Китай");
 
-//        2. Знайти всі комп'ютери які мають рік випуску більше ніж 2010 та країну виробник Китай
-         computers.stream()
-        .filter(computer -> computer.getYear()>2010)
-        .filter(computer -> computer.getProcesor().getProcManufacture()==CountryOfManufacture.CHINA)
-        .forEach(System.out::println);
-
-        System.out.println("__________________________________________________________________________");
-
-//        3. Знайти всі комп'ютери які мають рік випуску більше ніж 2010 та країну виробник не Китай
-         computers.stream()
-        .filter(computer -> computer.getYear()>2010)
-        .filter(computer -> computer.getProcesor().getProcManufacture()!=CountryOfManufacture.CHINA)
-        .forEach(System.out::println);
-
-        System.out.println("__________________________________________________________________________");
-
-//        4. Знайти всі комп'ютери які мають жорсткий диск більше 500гб
-        computers.stream().filter(computer -> computer.getRom().getRomMas()>500)
- .forEach(System.out::println);
-
-        System.out.println("__________________________________________________________________________");
-
-//        5. Знайти всі комп'ютери які мають жорсткий ссд диск більше 500гб та процессор і7
         computers.stream()
-                .filter(computer -> computer.getRom().getRoMtype()==ROMtype.SSD)
-                .filter(computer -> computer.getRom().getRomMas()>500)
-                .filter(computer -> computer.getProcesor()==i7)
+                .filter(computer -> computer.getYear() > 2010)
+                .filter(computer -> computer.getProcesor().getProcManufacture() == CountryOfManufacture.CHINA)
                 .forEach(System.out::println);
 
-        System.out.println("__________________________________________________________________________");
+        System.out.println("\n3. Знайти всі комп'ютери які мають рік випуску більше ніж 2010 та країну виробник не Китай");
 
-//        6. Знайти всі комп'ютери які мають жорсткий ссд диск більше 500гб та процессор і7 посортувати за ціною
         computers.stream()
-                .filter(computer -> computer.getRom().getRoMtype()==ROMtype.SSD)
-                .filter(computer -> computer.getRom().getRomMas()>500)
-                .filter(computer -> computer.getProcesor()==i7)
+                .filter(computer -> computer.getYear() > 2010)
+                .filter(computer -> computer.getProcesor().getProcManufacture() != CountryOfManufacture.CHINA)
+                .forEach(System.out::println);
+
+        System.out.println("\n4. Знайти всі комп'ютери які мають жорсткий диск більше 500гб");
+
+        computers.stream().filter(computer -> computer.getRom().getRomMas() > 500)
+                .forEach(System.out::println);
+
+        System.out.println("\n5.Знайти всі комп'ютери які мають жорсткий ссд диск більше 500гб та процессор і7");
+
+        computers.stream()
+                .filter(computer -> computer.getRom().getRoMtype() == ROMtype.SSD)
+                .filter(computer -> computer.getRom().getRomMas() > 500)
+                .filter(computer -> computer.getProcesor() == i7)
+                .forEach(System.out::println);
+
+        System.out.println("\n6. Знайти всі комп'ютери які мають жорсткий ссд диск більше 500гб та процессор і7 посортувати за ціною");
+
+        computers.stream()
+                .filter(computer -> computer.getRom().getRoMtype() == ROMtype.SSD)
+                .filter(computer -> computer.getRom().getRomMas() > 500)
+                .filter(computer -> computer.getProcesor() == i7)
                 .sorted(Comparator.comparingInt(Computer::getCost))
                 .forEach(System.out::println);
 
+//        Створити DAO -прошарок з CRUD операціями, які будуть записувати+
+//        контакти до БД (в данному випадку у LinkedList)+
+//        -Створити 10 конатків (2 з яких будуть однаковими)+
+//        -занести їх в базу.-
+//        -знайти всі унікальні контакти+
+//        -знайти всі унікальні контакти з певного департаменту.+
+//        -знайти всі унікальні контакти з певного департаменту
+//        посортувавши їх по імейлу .+
+//        -знайти всі унікальні контакти згрупувавши їх по компанії +
 
+        System.out.println("\nКонтакти:\n");
 
+        LinkedList<Contact> contacts = new LinkedList<>();
+        contacts.add(new Contact(1, "Rod", Company.Apple, "Zoo", "Zoo@.gmail.com", "102", Departament.factory));
+        contacts.add(new Contact(7, "Silvester", Company.Intel, "Rero", "Rero@.gmail.com", "108", Departament.tech));
+        contacts.add(new Contact(5, "One", Company.Apple, "Zeno", "Zeno@.gmail.com", "106", Departament.factory));
+        contacts.add(new Contact(6, "Nick", Company.Microsoft, "Reno", "Reno@.gmail.com", "107", Departament.tech));
+        contacts.add(new Contact(4, "Piter", Company.Intel, "Eoo", "Eoo@.gmail.com", "105", Departament.tech));
+        contacts.add(new Contact(2, "Mike", Company.Intel, "Yoo", "YZoo@.gmail.com", "103", Departament.support));
+        contacts.add(new Contact(3, "Jak", Company.Microsoft, "Too", "Too@.gmail.com", "104", Departament.factory));
+        contacts.add(new Contact(9, "Homer", Company.Apple, "Neo", "AHeo@.gmail.com", "110", Departament.support));
+        contacts.add(new Contact(8, "Apu", Company.Microsoft, "Pedro", "Pedro@.gmail.com", "109", Departament.factory));
 
+        contacts.add(new Contact(1, "Rod", Company.Apple, "Zoo", "Zoo@.gmail.com", "102", Departament.factory));
 
+        System.out.println("-знайти всі унікальні контакти");
+        contacts.stream()
+                .distinct()
+                .forEach(System.out::println);
+
+        System.out.println("\n-знайти всі унікальні контакти з певного департаменту.");
+        contacts.stream()
+                .distinct()
+                .filter(contact -> contact.getDepartament()
+                        .equals(Departament.support)).forEach(System.out::println);
+
+        System.out.println("\nзнайти всі унікальні контакти з певного департаменту посортувавши їх по імейлу ");
+        contacts.stream()
+                .distinct()
+                .filter(contact -> contact.getDepartament()
+                        .equals(Departament.support))
+                .sorted(Comparator.comparingInt(o -> o.getEmail().hashCode()))
+                .forEach(System.out::println);
+
+        System.out.println("\n-знайти всі унікальні контакти згрупувавши їх по компанії !!!!");
+        contacts.stream()
+                .distinct()
+                .filter(contact -> contact.getCompany()
+                        .equals(Company.Apple))
+                .sorted(Comparator.comparingInt(o -> o.getEmail().hashCode()))
+                .forEach(System.out::println);
 
 
     }

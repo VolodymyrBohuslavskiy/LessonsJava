@@ -9,6 +9,8 @@ package Tasks.collections.stream_api;
 //        -phone+
 //        -department (Enum -> tech, support , factory)
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
 
 //        Створити DAO -прошарок з CRUD операціями, які будуть записувати
 //        контакти до БД (в данному випадку у LinkedList)
@@ -20,8 +22,10 @@ package Tasks.collections.stream_api;
 //        посортувавши їх по імейлу .
 //
 //        -знайти всі унікальні контакти згрупувавши їх по компанії !!!!
+@AllArgsConstructor
+@Data
 
-public class Contact {
+class Contact {
     private int id;
     private String name;
     private Company company;

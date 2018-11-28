@@ -3,12 +3,13 @@ package Stream_File_etc;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Set;
 import java.util.stream.Collectors;
 
 public class main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
 
         ArrayList<Human> humans = new ArrayList<>();
         humans.add(new Human(6, "G", "g"));
@@ -44,10 +45,39 @@ public class main {
         collect.forEach(System.out::println);//Вивести ліст, у ньому є елементи що повторюються, бо це наступні дії з цим лістом
 
 
+//        File file=new File("G:\\Local projects\\LessonsJava\\src\\!FILES\\ohohohoho.txt");
+//        if (!file.exists()) file.createNewFile();
+//
+//        System.out.println(file.exists());
+
+// створити файл
+        File file = new File("G:\\Project on git\\IdeaProjects\\LessonsJava\\File\\File1.txt");
+        if (!file.exists()) file.createNewFile();
+// Створити потік запису
+        FileOutputStream fileOutputStream = new FileOutputStream(file/*,true*/);//append -дозаписування файлів true- так, якщо нічого то перезапис
+// Записати в файл
+        fileOutputStream.write("Текст".getBytes());
+        fileOutputStream.close();// Оюовязково закрити потік
+
+// Ефективніше !!!!
+        FileWriter fileWriter = new FileWriter(file, true);
+        fileWriter.write("\nadsfgfedqwdsdcwqdsa");
+        fileWriter.write("\nadsfgfedqwdsdcwqdsa");
+        fileWriter.close();
 
 
 
+// Читання
+BufferedReader bufferedReader=new BufferedReader(new FileReader(file));
+        String s;
+while ((s=bufferedReader.readLine())!=null) System.out.println(s);
 
+
+
+File usersForParsing=new File("G:\\Project on git\\IdeaProjects\\LessonsJava\\File\\usersForParsing.txt");
+BufferedReader bufferedusersForParsing =new BufferedReader(new FileReader(usersForParsing));
+String s1;
+while ((s1=bufferedusersForParsing.readLine())!=null) System.out.println(s1);
 
 
 

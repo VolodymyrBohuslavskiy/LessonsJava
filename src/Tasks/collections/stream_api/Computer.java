@@ -20,13 +20,13 @@ import lombok.NoArgsConstructor;
 //        -кількість ядер+
 //        -частота+
 //        -виробник (Енуми ті самі країни)+
-//
+
 //        Створити список з 20 об'єктів.
-//
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class Computer {
+class Computer {
     private String model;
     private int year, RAM, Cost;
     private ROM rom;
