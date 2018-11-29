@@ -66,20 +66,33 @@ public class main {
         fileWriter.close();
 
 
-
 // Читання
+
 BufferedReader bufferedReader=new BufferedReader(new FileReader(file));
         String s;
 while ((s=bufferedReader.readLine())!=null) System.out.println(s);
 
+//        File file1 = new File("G:\\Project on git\\IdeaProjects\\LessonsJava\\File\\ONE.txt");
+//        file1.createNewFile();
+//        FileOutputStream fileOutputStream1 = new FileOutputStream(file1);
+//fileOutputStream1.write("Cat Cat !".getBytes());
+//        fileOutputStream1.close();
 
 
-File usersForParsing=new File("G:\\Project on git\\IdeaProjects\\LessonsJava\\File\\usersForParsing.txt");
-BufferedReader bufferedusersForParsing =new BufferedReader(new FileReader(usersForParsing));
-String s1;
-while ((s1=bufferedusersForParsing.readLine())!=null) System.out.println(s1);
+// Створити потік читання
+        FileInputStream fileInputStream = new FileInputStream(file);
 
+// Створити байтовий масив довжиною fileInputStream.available()
+        byte[] bytes = new byte[fileInputStream.available()];
 
+// Прочтати даний байтовий масив
+        fileInputStream.read(bytes);
+
+// Переиворити байтовий масив у строку
+        String strings = new String(bytes);
+
+// Вивести цю строку
+        System.out.println(strings);
 
 
     }
