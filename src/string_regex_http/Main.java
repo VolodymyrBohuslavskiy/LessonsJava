@@ -1,6 +1,7 @@
 package string_regex_http;
 
 
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.json.JSONArray;
@@ -76,7 +77,15 @@ public class Main {
         byte[]bytes=new byte[inputStream.available()];
         inputStream.read(bytes);
         String string = new String(bytes);
-        System.out.println(string);*/
+        System.out.println(string);
+
+// Для JSON
+        JSONArray objects =new JSONArray(string);
+        for (Object object : objects) {
+            JSONObject object1 = (JSONObject) object;
+            System.out.println(object1.get("name") +" "+ object1.get("age"));
+        }
+        */
 
 // 1 Path
         URL url = new URL("http://localhost:3000/json");
@@ -91,12 +100,35 @@ public class Main {
         String string = new String(bytes);
 //        System.out.println(string);
 
-
         JSONArray objects =new JSONArray(string);
         for (Object object : objects) {
-            final JSONObject object1 = (JSONObject) object;
-            System.out.println(object1.get("name") +" "+ object1.get("age"));
+            JSONObject object1 = (JSONObject) object;
+//            System.out.println(object1.get("name") +" "+ object1.get("age"));
+        humans.add(new Human(object1.getInt("id"), (String) object1.get("name"),object1.getInt("age")));
         }
+
+humans.stream()
+        .distinct()
+        .sorted(Comparator.comparingInt(Human::getId))
+        .forEach(human -> System.out.println(human.getId()+" "+human.getName()+" "+human.getAge()));
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
