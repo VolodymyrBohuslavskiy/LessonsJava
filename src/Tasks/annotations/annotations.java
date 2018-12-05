@@ -12,11 +12,12 @@ import java.lang.reflect.Field;
 public class annotations {
     public static void main(String[] args) throws NoSuchFieldException, IllegalAccessException {
 
-        System.out.println(validate(new User("KAMAZ)", "LOL")));
-
+        System.out.println(validate(new User("Name", "Surname")));
+        System.out.println(validate(new User("Name%", "Surname")));
+        System.out.println(validate(new User("Name", "Sur#name")));
+        System.out.println(validate(new User("Na^me", "Surn@ame")));
 
     }
-
 
 //private static boolean validate(User a){
 //    String[] simvols = new String[]{"!","@","#","$","%","^", "&","*","(",")"};
@@ -70,7 +71,7 @@ public class annotations {
 @AllArgsConstructor
 @Data
 class User {
-    @ValidationSinmvol(defString = " 0_0 ")
+    @ValidationSinmvol(defString = "!!!")
     private String name, surname;
 }
 
