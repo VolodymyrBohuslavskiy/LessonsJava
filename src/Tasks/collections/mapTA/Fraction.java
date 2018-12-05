@@ -1,14 +1,16 @@
 package Tasks.collections.mapTA;
 
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
 import java.util.ArrayList;
 
 @Data
-
+@AllArgsConstructor
 
 public class Fraction {
-ArrayList<Deputat> deputats;
+    private String fractionName;
+    private ArrayList<Deputat> deputats;
 
 }

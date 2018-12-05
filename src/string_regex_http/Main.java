@@ -79,6 +79,15 @@ public class Main {
         String string = new String(bytes);
         System.out.println(string);
 
+// Для JSON цього
+[
+    {"id":"3", "name":"Olololn", "age":21},
+    {"id":"80", "name":"Nick", "age":4},
+    {"id":"6", "name":"Zack", "age":19},
+    {"id":"333", "name":"Zorro", "age":22},
+    {"id":"1", "name":"Lee", "age":69}
+]
+
 // Для JSON
         JSONArray objects =new JSONArray(string);
         for (Object object : objects) {
@@ -111,25 +120,6 @@ humans.stream()
         .distinct()
         .sorted(Comparator.comparingInt(Human::getId))
         .forEach(human -> System.out.println(human.getId()+" "+human.getName()+" "+human.getAge()));
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
     }

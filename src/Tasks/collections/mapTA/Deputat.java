@@ -7,6 +7,7 @@ import lombok.Data;
         прізвище,ім'я,вік,хабарник?,розмі хабаря
         методи:*/
 @Data
+
 public class Deputat extends Human {
     private String surname, name;
     private int age;
